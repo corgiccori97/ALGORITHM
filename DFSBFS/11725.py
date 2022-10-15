@@ -1,6 +1,7 @@
 # 런타임에러. 왜지?
+# setrecursionlimit 10000에서 10**7로 바꾸니까 해결됨 ㅠ
 import sys
-sys.setrecursionlimit(10000)
+sys.setrecursionlimit(10**7)
 input = sys.stdin.readline
 
 def dfs(v):
@@ -8,13 +9,13 @@ def dfs(v):
     for i in graph[v]: 
         if visited[i] == 0:
             visited[i] = 1
-            result[i] = v
+            result.append([i, v])
             dfs(i)
 
 n = int(input())
 graph = [[] * (n + 1) for _ in range(n + 1)]
 visited = [0] * (n + 1)
-result = {}
+result = []
 
 for _ in range(n - 1):
     a, b = list(map(int, input().split()))
@@ -22,5 +23,5 @@ for _ in range(n - 1):
     graph[b].append(a)
 
 dfs(1)
-for r in sorted(result.items()):
+for r in sorted(result):
     print(r[1])
