@@ -1,13 +1,22 @@
 import sys
 input = sys.stdin.readline
 
+
 def dfs(v, depth):
     global count
+
+    if depth == 2:
+        return
+    
     visited[v] = 1
     for i in graph[v]:
-        if visited[i] == 0 and depth <= 2:
+        if not visited[i]:
+            visited[i] = 1
             count += 1
-            dfs(i, depth + 1)
+        dfs(i, depth + 1)
+
+    return count
+
 
 n = int(input())
 m = int(input())
@@ -21,4 +30,4 @@ for _ in range(m):
     graph[b].append(a)
 
 dfs(1, 0)
-print(count)
+print(len(list(filter(lambda x: x == True, visited))) - 1)

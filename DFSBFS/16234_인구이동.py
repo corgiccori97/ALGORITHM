@@ -32,9 +32,10 @@ def bfs(i, j):
 
     for (x, y) in location:
         graph[x][y] = int(num_sum / count)
-    
+
     return count
-    
+
+
 n, l, r = map(int, input().split())
 graph = []
 visited = [[0] * (n + 1) for _ in range(n + 1)]
@@ -43,9 +44,9 @@ answer = 0
 for _ in range(n):
     graph.append(list(map(int, input().split())))
 
-# for i in range(n):
-#     for j in range(n):
-#         bfs(i, j)
-#         answer += 1
+for i in range(n):
+    for j in range(n):
+        if bfs(i, j) != 1:
+            answer += 1
 
 print(graph, answer)
