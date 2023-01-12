@@ -1,5 +1,4 @@
-const fs = require('fs');
-const input = fs.readFileSync("/dev/stdin").toString().trim();
+ const input = require('fs').readFileSync('/dev/stdin').toString().trim().split(' ');
 
 let inputNumber = Number(input);
 
