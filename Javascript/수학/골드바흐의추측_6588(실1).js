@@ -2,7 +2,7 @@ const input = require('fs').readFileSync('예제.txt').toString().trim().split('
 
 const isPrime = (num) => {
     if (num === 1) return false;
-    
+
     for (let i = 2; i <= Math.sqrt(num); i++) {
         if (num % i === 0) return false;
     }
@@ -10,14 +10,16 @@ const isPrime = (num) => {
     return true;
 }
 
-for (let i = 1; i < input.length; i++) {
+for (let i = 0; i < input.length; i++) {
     const n = input[i];
-    let left = right = n / 2;
+    if (!n) break;
+    let left = 2;
+    let right = n - 2;
 
     while (!isPrime(left) || !isPrime(right)) {
-        left -= 1;
-        right += 1;
+        left += 1;
+        right -= 1;
     }
-    
-    console.log(left, right);
+
+    console.log(n + " = " + left + " + " + right);
 }
